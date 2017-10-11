@@ -1,6 +1,6 @@
 {
   "name": "ualibraries/wp-plugin-redirect-uap",
-  "type": "vcs",
+  "type": "wordpress-plugin",
   "license": "Copyright (C) 2011-2017 The Arizona Board of Regents on Behalf of the University of Arizona - All Rights Reserved",
   "description": "Redirect requests to books on the old press site to the new one",
   "homepage": "https://github.com/ualibraries/wp-plugin-redirect-uap",
