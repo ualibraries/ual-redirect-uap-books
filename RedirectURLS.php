@@ -1,7 +1,9 @@
 <?php
+require_once __DIR__ . "/dbconnect.php";
+
 // Old Press Database
 
-$dsn = "mysql:dbname=" . $db_name_old_press. "press;host=" . $host;
+$dsn = "mysql:dbname=" . $db_name_old_press. ";host=" . $host;
 
 try{
     $db = new PDO ($dsn, $user_old_press, $pass_old_press);
@@ -19,7 +21,7 @@ $data_old_press = $ex->fetchAll();
 
 
 //New Press Database
-$dsn = "mysql:dbname=" . $db_name_new_press. "press;host=" . $host;
+$dsn = "mysql:dbname=" . $db_name_new_press. ";host=" . $host;
 
 try{
     $db = new PDO ($dsn, $user_new_press, $pass_new_press);
@@ -50,7 +52,7 @@ foreach($data_old_press as $old_press_book) {
     }
 }
 
-$file = 'mapped_urls.json';
+$file = 'mapped_uris.json';
 $handle = fopen($file, 'w');
 fwrite($handle, json_encode($mapped_urls));
 fclose($handle);
