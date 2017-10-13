@@ -77,8 +77,7 @@ foreach($new_data as $new_book_data) {
     foreach($new_book_data['isbns'] as $isbn) {
         if(isset($old_data[$isbn])) {
             $mapped_urls[$old_url . $old_data[$isbn] . ".htm"]['new_url']  = str_replace($local_wp_site_url, '', $new_book_data['guid']);
-        }
-        break;
+        } 
     }
 }
 
