@@ -15,7 +15,7 @@ function redirect_old_book($query)
 {
     $new_url = uri_is_mapped($query->request);
     if ($new_url) {
-        wp_redirect(home_url() . $new_url);
+        wp_safe_redirect(home_url() . $new_url, 301);
         exit();
     }
 
