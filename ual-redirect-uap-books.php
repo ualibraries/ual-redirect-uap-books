@@ -18,20 +18,33 @@ function redirect_old_book($query)
         wp_redirect(home_url() . $new_url);
         exit();
     }
+
 }
 
 function uri_is_mapped($request)
 {
     try {
-        $file = fopen(plugin_dir_path(__FILE__) . 'mapped_uris.json', 'r');
-        $mapped_uris = fgets($file);
-        $mapped_uris_decoded = json_decode($mapped_uris, true);
-        if (isset($mapped_uris_decoded[$request])) {
-            return $mapped_uris_decoded[$request]['new_url'];
-        } else {
-            return false;
+        $fname = plugin_dir_path(__FILE__) . 'mapped_uris.json';
+
+        if(!file_exists($fname)) {
+            throw new Exception('File not found: ' . $fname);
+        }
+
+        $file = fopen($fname, 'r');
+
+        if(!$file) {
+            throw new Exception('File open failed: ' . $fname);
         }
     } catch (Exception $e) {
-        print "Failed to open file: " . $e->getMessage();
+        error_log($e->getMessage());
+        return false;
+    }
+
+    $mapped_uris = fgets($file);
+    $mapped_uris_decoded = json_decode($mapped_uris, true);
+    if (isset($mapped_uris_decoded[$request])) {
+        return $mapped_uris_decoded[$request]['new_url'];
+    } else {
+        return false;
     }
 }
