@@ -36,7 +36,7 @@ function uri_is_mapped($request)
             throw new Exception('File open failed: ' . $fname);
         }
     } catch (Exception $e) {
-        error_log($e);
+        error_log($e->getMessage());
         return false;
     }
 
